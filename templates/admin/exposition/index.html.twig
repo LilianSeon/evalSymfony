@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'inc/flash.message.html.twig' %}
+<div class="row my-3 d-flex">
+    <div class="col-7 align-self-center">
+        <h1 class="h1 text-dark"><strong>Administration des expositions</strong></h1>
+    </div>
+    <div class="col-4 align-self-center">
+        <a href="{{ url('admin.exposition.form') }}" class="btn btn-primary">Ajouter une expo</a>
+    </div>
+</div>
+    <div class="row text-dark">
+    <div class="col-12">
+        <table class="table table-hover table-dark shadow-lg">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for expo in expositions  %}
+                <tr>
+                    <th scope="row">{{ expo.name }}</th>
+                    <td>{{ expo.description }}</td>
+                    <td>{{ expo.date | date('d/m/Y') }}
+                        {% if expo.date < today %}
+                            <span class="badge badge-success ml-3">Expo terminée</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url('admin.exposition.form.update', { id : expo.id }) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                        <a href="{{ url('admin.exposition.remove', { id : expo.id }) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row d-flex">
+    <div class="col-3 align-self-center">
+    <h1 class="h1 text-dark"><b>Les Expo</b></h1>
+    </div>
+    </div>
+    <div class="row text-dark">
+    <div class="col-12">
+        <h4 class="my-4">Expositions à venir</h4>
+    <table class="table table-hover table-dark shadow-lg text-center">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for expo in expositions  %}
+            <tr>
+                <th scope="row">{{ expo.name }}</th>
+                <td>{{ expo.description }}</td>
+                <td>{{ expo.date | date('d/m/Y') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="col-12 mt-4">
+        <h4 class="my-4">Expositions passées</h4>
+        <table class="table table-hover table-dark shadow-lg text-center">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for expo in prevexpos  %}
+                <tr>
+                    <th scope="row">{{ expo.name }}</th>
+                    <td>{{ expo.description }}</td>
+                    <td>{{ expo.date | date('d/m/Y') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+{% endblock %}

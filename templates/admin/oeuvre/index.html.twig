@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'inc/flash.message.html.twig' %}
+    <div class="row my-3 d-flex">
+        <div class="col-7 align-self-center">
+            <h1 class="h1 text-dark"><strong>Administration des oeuvres</strong></h1>
+        </div>
+        <div class="col-4 align-self-center">
+            <a href="{{ url('admin.oeuvre.form') }}" class="btn btn-primary">Ajouter une oeuvre</a>
+        </div>
+    </div>
+    <div class="row text-dark">
+        <div class="col-12">
+            <table class="table table-hover table-dark shadow-lg">
+                <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col" style="width: 100px">Image</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Artiste</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for oeuvre in oeuvres  %}
+                    <tr>
+                        <th scope="row">{{ oeuvre.name }}</th>
+                        <td>{{ oeuvre.description | truncate(20, true)}}</td>
+                        <td>
+                            <img  class="img-thumbnail" src="{{ asset('/img/oeuvre/' ~ oeuvre.image) }}">
+                        </td>
+                        <td>{{ oeuvre.category.name }}</td>
+                        <td>{{ oeuvre.artiste.name }}</td>
+                        <td>
+                            <a href="{{ url('admin.oeuvre.form.update', { id : oeuvre.id }) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                            <a href="{{ url('admin.oeuvre.remove', { id : oeuvre.id }) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

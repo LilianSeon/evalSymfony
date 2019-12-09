@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row text-dark d-flex">
+        <div class="col-5 align-self-center"><h1 class="h1 "><strong>Les oeuvres</strong></h1></div>
+    <div class="col-6 align-self-center">
+    {{ form_start(form) }}
+        {{ form_label(form.category, 'Catégorie :') }}
+        {{ form_widget(form.category, {attr : {class : 'custom-select'}}) }}
+    {{ form_end(form) }}
+    </div>
+    </div>
+    <div class="row listoeuvre mt-5 d-flex justify-content-center">
+        {% for oeuvre in oeuvres %}
+            <div class="w-25 m-1">
+            <a href="{{ url('oeuvre.details', { 'id': oeuvre.id }) }}"><div class="card bg-dark text-dark">
+                <img class="card-img" src="{{ asset('img/oeuvre/' ~ oeuvre.image) }}" alt="Card image">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">{{ oeuvre.name }}</h5>
+                </div>
+            </div></a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

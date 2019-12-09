@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="text-dark">
+    <h1 class="my-4">{{result.name}}
+        <small class="ml-3">Catégorie : {{ result.category.name }}</small>
+    </h1>
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-fluid rounded shadow-lg" src="{{ asset('img/oeuvre/' ~ result.image) }}" alt="">
+        </div>
+        <div class="col-md-4">
+            <h3 class="my-3">Description</h3>
+            <p>{{ result.description }}</p>
+            <h3 class="my-3">Artiste</h3>
+            <div class="text-center">
+            <img class="rounded-circle shadow-lg" width="150" height="150" src="{{ asset('img/artiste/' ~ result.artiste.photo) }}" alt="">
+            <h5 class="my-1">{{ result.artiste.name }}</h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+

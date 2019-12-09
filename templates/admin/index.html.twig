@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="h1"><b>Espace admin</b></h1>
+    <div class="row my-3">
+        <div class="col-12">
+            <h3 class="card-title">Expositions</h3>
+            <a href="{{ url('admin.exposition.index') }}" class="btn btn-primary">Administrer</a>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12">
+            <h3 class="card-title">Oeuvres</h3>
+            <a href="{{ url('admin.oeuvre.index') }}" class="btn btn-primary">Administrer</a>
+        </div>
+    </div>
+{% endblock %}
